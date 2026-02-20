@@ -1,5 +1,6 @@
 package com.myproject.microservicesproject.service;
 
+import com.myproject.microservicesproject.error.EmployeeNotFoundException;
 import com.myproject.microservicesproject.model.Employee;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,9 +32,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getemployeeById(String id) {
         return employees
                 .stream()
-                .filter(employee -> employee.getEmployeeId().equals(id))
+                .filter(employee -> employee.getEmployeeId().equalsIgnoreCase(id))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(()-> new EmployeeNotFoundException("Employee Id not found " + id));
     }
 
 }
