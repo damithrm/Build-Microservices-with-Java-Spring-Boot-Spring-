@@ -12,4 +12,6 @@ public interface EmployeeService {
     List<Employee> getAllEmployees();
 
     Employee getemployeeById(String id);
+
+    String deleteEmployee(String id);
 }
